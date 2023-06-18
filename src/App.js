@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import "./App.css";
+import lamp from "./lampe.png";
+import lampOff from "./lightOff.png";
 
 function App() {
+  const [isLight, setIsLight] = useState(false);
+
+  const handleLight = () => {
+    setIsLight(!isLight);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`App ${isLight ? "light" : "dark"}`}>
+      <h1>Hello to you turn light {isLight ? "on" : "off"}</h1>
+      {!isLight && (
+        <img src={lampOff} onClick={handleLight} className="theme" />
+      )}
+      {isLight && <img onClick={handleLight} src={lamp} className="image" />}
+      <p>Bok Miha</p>
     </div>
   );
 }
